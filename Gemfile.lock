@@ -12,6 +12,9 @@ GEM
       http_parser.rb (~> 0.6.0)
     http_parser.rb (0.6.0)
     json (1.8.3)
+    linguistics (2.0.4)
+      loggability (~> 0.11)
+    loggability (0.11.0)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
     multipart-post (2.0.0)
@@ -37,6 +40,7 @@ PLATFORMS
 
 DEPENDENCIES
   foreman
+  linguistics
   rwordnet
   twitter
 

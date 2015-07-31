@@ -1,11 +1,14 @@
 require 'wordnet'
+require 'linguistics'
 
 class PolicyDeviser
   def self.generate_policy
+    Linguistics.use :en
+
     country = choose_country
     noun = find_noun_for_country(country)
 
-    "We #{ predicate } #{ country[:name] } to privatise its #{ noun }."
+    "We #{ predicate } #{ country[:name] } to privatise its #{ noun.en.plural }."
   end
 
 private
