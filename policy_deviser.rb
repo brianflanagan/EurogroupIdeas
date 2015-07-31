@@ -13,6 +13,7 @@ class PolicyDeviser
       "We #{ require_predicate } #{ country[:name] } to #{ privatise_synonym } its #{ noun.en.plural }."
     when :behove
       "It #{ behove_predicate } #{ country[:name] } to #{ privatise_synonym } its #{ noun.en.plural }."
+    end
   end
 
 private
