@@ -3,16 +3,14 @@ require 'linguistics'
 
 class PolicyDeviser
   def self.generate_policy
-    Linguistics.use :en
-
     country = choose_country
     noun = find_noun_for_country(country)
 
     case [:urge, :behove].sample
     when :urge
-      "We #{ urge_predicate } #{ country[:name] } to privatise its #{ noun.en.plural }."
+      "We #{ urge_predicate } #{ country[:name] } to privatise its #{ noun }."
     when :behove
-      "It #{ behove_predicate } #{ country[:name] } to privatise its #{ noun.en.plural }."
+      "It #{ behove_predicate } #{ country[:name] } to privatise its #{ noun }."
     end
   end
 
