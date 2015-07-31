@@ -1,0 +1,1 @@
+eurogroup: bundle exec ruby eurogroup.rb
