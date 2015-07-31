@@ -10,9 +10,9 @@ class PolicyDeviser
 
     case [:urge, :behove].sample
     when :urge
-      "We #{ urge_predicate } #{ country[:name] } to #{ privatise_synonym } its #{ noun.en.plural }."
+      "We #{ urge_predicate } #{ country[:name] } to privatise its #{ noun.en.plural }."
     when :behove
-      "It #{ behove_predicate } #{ country[:name] } to #{ privatise_synonym } its #{ noun.en.plural }."
+      "It #{ behove_predicate } #{ country[:name] } to privatise its #{ noun.en.plural }."
     end
   end
 
