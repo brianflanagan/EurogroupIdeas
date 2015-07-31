@@ -8,15 +8,27 @@ class PolicyDeviser
     country = choose_country
     noun = find_noun_for_country(country)
 
-    "We #{ predicate } #{ country[:name] } to privatise its #{ noun.en.plural }."
+    case [:urge, :behove].sample
+    when :urge
+      "We #{ require_predicate } #{ country[:name] } to #{ privatise_synonym } its #{ noun.en.plural }."
+    when :behove
+      "It #{ behove_predicate } #{ country[:name] } to #{ privatise_synonym } its #{ noun.en.plural }."
   end
 
 private
 
-  def self.predicate
+  def self.urge_predicate
     adverb = ['strongly','emphatically','enthusiastically','passionately','exuberantly','fervently',nil].sample
     verb = ['urge','pressure','encourage','admonish','beseech','exhort'].sample
     [adverb, verb].compact.join(' ')
+  end
+
+  def self.behove_predicate
+    ['behoves', 'is incumbent on', 'would be prudent for', 'is advisable for', 'is sensible for'].sample
+  end
+
+  def self.privatise_synonym
+    ['privatise','subcontract'].sample
   end
 
   def self.find_noun_for_country(country)
