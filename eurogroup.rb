@@ -11,8 +11,10 @@ end
 $stdout.sync = true
 
 loop do
+  msg = nil
+
   while msg.nil? or (msg.size < 1) or (msg.size > (140 - 'RT EuroGroupIdeas'.size)) do
-    msg = PolicyDeviser.generate_policy + '#eurogroup'
+    msg = PolicyDeviser.generate_policy + ' #eurogroup'
   end
 
   puts " >> " + msg
