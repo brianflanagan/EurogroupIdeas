@@ -6,14 +6,14 @@ class PolicyDeviser
     noun = nil
 
     while !noun do
-      noun = find_noun_for_country(country)
+      noun, username = find_noun_and_username_for_country(country)
     end
 
     case [:urge, :behove].sample
     when :urge
-      "We #{ urge_predicate } #{ country[:name] } to privatise its #{ noun }."
+      "We #{ urge_predicate } #{ country[:name] } to privatise its #{ noun }. /cc @#{ username }"
     when :behove
-      "It #{ behove_predicate } #{ country[:name] } to privatise its #{ noun }."
+      "It #{ behove_predicate } #{ country[:name] } to privatise its #{ noun }. /cc @#{ username }"
     end
   end
 
@@ -33,14 +33,14 @@ private
     ['privatise','subcontract'].sample
   end
 
-  def self.find_noun_for_country(country)
-    $twitter.search("lang:en -rt #{ country[:demonym] }", result_type: "recent", count: 100).to_a.shuffle.each do |tweet|
+  def self.find_noun_and_username_for_country(country)
+    $twitter.search("lang:en -rt #{ country[:demonym] }", result_type: "recent", count: 100).take(100).to_a.shuffle.each do |tweet|
       word = get_noun_after_demonym(tweet.text.downcase, country[:demonym])
 
       next unless word && word.size > 2
 
       puts " >> " + tweet.text
-      return word
+      return [word, tweet.user.username]
     end
 
     nil
@@ -53,6 +53,8 @@ private
     nouns.each do |noun|
       return(noun) if tweet_text.include?("#{ country_demonym } #{ noun }")
     end
+
+    nil
   end
 
   def self.choose_country
