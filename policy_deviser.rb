@@ -48,7 +48,7 @@ private
 
   def self.get_noun_after_demonym(tweet_text, country_demonym)
     tgr = EngTagger.new
-    tagged = tgr.add_tags(after_demonym)
+    tagged = tgr.add_tags(tweet_text)
     nouns = tgr.get_noun_phrases(tagged).keys.sort_by { |i| i.length }.reverse
     nouns.each do |noun|
       return(noun) if tweet_text.include?("#{ country_demonym } #{ noun }")
