@@ -34,7 +34,7 @@ private
   end
 
   def self.find_noun_for_country(country)
-    $twitter.search("lang:en -rt #{ country[:demonym] }", result_type: "recent", count: 100).shuffle.each do |tweet|
+    $twitter.search("lang:en -rt #{ country[:demonym] }", result_type: "recent", count: 100).to_a.shuffle.each do |tweet|
       word = get_noun_after_demonym(tweet.text.downcase, country[:demonym])
 
       next unless word && word.size > 2
