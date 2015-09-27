@@ -1,9 +1,8 @@
-ruby '2.2.2'
+ruby '2.2.3'
 source 'https://rubygems.org'
 
 gem 'twitter'
-gem 'rwordnet'
-gem 'linguistics'
+gem 'engtagger'
 
 group :development do
   gem 'foreman'
