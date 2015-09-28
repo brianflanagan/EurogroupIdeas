@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 gem 'twitter'
 gem 'engtagger'
+gem 'rwordnet'
 
 group :development do
   gem 'foreman'

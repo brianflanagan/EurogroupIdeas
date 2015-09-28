@@ -1,4 +1,5 @@
 require 'engtagger'
+require 'wordnet'
 
 class PolicyDeviser
   def self.generate_policy
@@ -51,10 +52,19 @@ private
     tagged = tgr.add_tags(tweet_text)
     nouns = tgr.get_noun_phrases(tagged).keys.sort_by { |i| i.length }.reverse
     nouns.each do |noun|
-      return(noun) if tweet_text.include?("#{ country_demonym } #{ noun }")
+      o_noun = noun.scan(/^[^[@\.,]]+/).first # ignore weird stuff
+      next unless tweet_text.include?("#{ country_demonym } #{ o_noun }")
+      next unless is_noun?(o_noun.split(' ').last)
+
+      return o_noun
     end
 
     nil
+  end
+
+  def self.is_noun?(word)
+    lemma = WordNet::Lemma.find(word, :noun)
+    return !lemma.nil?
   end
 
   def self.choose_country
