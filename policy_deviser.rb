@@ -52,7 +52,8 @@ private
     tagged = tgr.add_tags(tweet_text)
     nouns = tgr.get_noun_phrases(tagged).keys.sort_by { |i| i.length }.reverse
     nouns.each do |noun|
-      o_noun = noun.scan(/^[^[@\.,]]+/).first # ignore weird stuff
+      o_noun = noun.scan(/^[^[@\.,&]]+/).first # ignore weird stuff
+      next unless o_noun
       next unless tweet_text.include?("#{ country_demonym } #{ o_noun }")
       next unless is_noun?(o_noun.split(' ').last)
 
